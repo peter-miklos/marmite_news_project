@@ -26,6 +26,7 @@ var promise = new Promise(function(resolve, reject) {
 News.prototype = {
 
 
+
   getArticles: function() {
   var self = this;
     promise.then(function(result){
@@ -36,8 +37,13 @@ News.prototype = {
       console.log(error);
     });
     return self.articles;
+  },
+
+  getHeadline: function() {
+    return this.articles[0].webTitle;
+  },
+
+    createArticles(api) {
+    this.articles.push(api);
   }
-  //   createArticles(api) {
-  //   this.articles.push(api);
-  // }
 };
