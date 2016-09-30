@@ -13,7 +13,7 @@ var promise = new Promise(function(resolve, reject) {
       resolve(JSON.parse(request.responseText));
 
     } else {
-      reject('error happened :(:(:(')
+      reject('error happened :(:(:(');
       // We reached our target server, but it returned an error
     }
   };
@@ -21,25 +21,23 @@ var promise = new Promise(function(resolve, reject) {
     // There was a connection error of some sort
   };
   request.send();
-})
+});
 
 News.prototype = {
 
 
   getArticles: function() {
-    promise.then(function(result) {
-      console.log(result);
+  var self = this;
+    promise.then(function(result){
+      self.articles = result.response.results;
+      // console.log(this.articles)
     },
     function(error) {
       console.log(error);
     });
-  },
-
-  // promise.done(function() {
-  //   return(receivedData);
-  // })
-    createArticles(api) {
-    this.articles.push(api);
-
+    return self.articles;
   }
+  //   createArticles(api) {
+  //   this.articles.push(api);
+  // }
 };
